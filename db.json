@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "name": "Umesh Sapkota",
+      "address": "adarshanagar",
+      "email": "sapkotaumesh4@gmail.com",
+      "phone": "9843805597",
+      "dateOfBirth": "2021-05-03",
+      "id": 1
+    },
+    {
+      "name": "ram",
+      "address": "rampur",
+      "email": "ram@gmail.com",
+      "phone": "9843805597",
+      "dateOfBirth": "2021-05-10",
+      "id": 2
+    }
+  ]
+}

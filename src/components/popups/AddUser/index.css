@@ -1,0 +1,31 @@
+.title {
+  font-size: 25px;
+  font-weight: 500px;
+  margin-bottom: 10px;
+}
+.user-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+.user-details .fields {
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+.user-details .fields input {
+  height: 40px;
+  width: 70%;
+  padding-left: 15px;
+}
+.user-details .fields label {
+  font-size: 18px;
+  display: block;
+}
+.user-details .gender-details .title {
+  display: block;
+  font-size: 18px;
+}
+.user-details .gender-details .category span {
+  margin-right: 15px;
+  font-size: 18px;
+}
