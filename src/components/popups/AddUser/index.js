@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./index.css";
 import { getEducation } from "./educationDetails";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -42,6 +43,7 @@ const AddUser = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+
     await axios.post("http://localhost:3003/users", user);
     history.push("/");
   };
@@ -55,11 +57,13 @@ const AddUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="text"
                 name="name"
                 value={name}
                 placeholder="Enter your Name"
                 onChange={(e) => onInputChange(e)}
+                required
               ></input>
             </td>
             <td>
@@ -67,6 +71,7 @@ const AddUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="text"
                 name="address"
                 value={address}
@@ -82,6 +87,7 @@ const AddUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="date"
                 name="dateOfBirth"
                 value={dateOfBirth}
@@ -135,6 +141,7 @@ const AddUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="text"
                 name="email"
                 value={email}
@@ -147,6 +154,7 @@ const AddUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="number"
                 name="phone"
                 value={phone}

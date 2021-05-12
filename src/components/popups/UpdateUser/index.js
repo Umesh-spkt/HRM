@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getEducation } from "../AddUser/educationDetails";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
+import "./index.css";
 
 const UpdateUser = () => {
   let history = useHistory();
@@ -66,11 +67,13 @@ const UpdateUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="text"
                 name="name"
                 value={name}
                 placeholder="Enter your Name"
                 onChange={(e) => onInputChange(e)}
+                required
               ></input>
             </td>
             <td>
@@ -78,6 +81,7 @@ const UpdateUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="text"
                 name="address"
                 value={address}
@@ -93,6 +97,7 @@ const UpdateUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="date"
                 name="dateOfBirth"
                 value={dateOfBirth}
@@ -146,6 +151,7 @@ const UpdateUser = () => {
             </td>
             <td>
               <input
+                className="field"
                 type="text"
                 name="email"
                 value={email}
@@ -158,7 +164,8 @@ const UpdateUser = () => {
             </td>
             <td>
               <input
-                type="text"
+                className="field"
+                type="number"
                 name="phone"
                 value={phone}
                 placeholder="Enter your Number"
@@ -167,10 +174,15 @@ const UpdateUser = () => {
             </td>
           </tr>
         </table>
-        <button onClick={() => handleAdd()} className="btn btn-primary btn-sm">
+
+        <h3>Education Details</h3>
+        <button
+          type="button"
+          onClick={(e) => handleAdd()}
+          className="btn btn-primary btn-sm"
+        >
           Add
         </button>
-        <h3>Education Details</h3>
 
         <table className="table">
           <thead>
@@ -203,7 +215,6 @@ const UpdateUser = () => {
               </tr>
             ))}
           </tbody>
-          {/* Education details ends here */}
         </table>
         <input type="submit" value="submit"></input>
       </form>

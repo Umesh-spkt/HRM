@@ -19,11 +19,19 @@ export default function Dashboard() {
     loadEmployees();
   };
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div className="container">
       <div className="py-4">
         <div style={{ float: "right" }}>
-          <h3>Search</h3>
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          />
         </div>
         <div style={{ float: "left" }}>
           <Link className="btn btn-outline-dark" to="/users/add">
@@ -34,45 +42,65 @@ export default function Dashboard() {
         <table className="table border shadow">
           <thead className="table-light">
             <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Address</th>
-              <th scope="col">Date Of Birth</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone Number</th>
+              <th column="name" order="desc" scope="col">
+                Name
+              </th>
+              <th column="address" order="desc" scope="col">
+                Address
+              </th>
+              <th column="dateOfBirth" order="desc" scope="col">
+                Date Of Birth
+              </th>
+              <th column="email" order="desc" scope="col">
+                Email
+              </th>
+              <th column="phoneNumber" order="desc" scope="col">
+                Phone Number
+              </th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {employees.map((employee, index) => (
-              <tr key={index}>
-                <td>{employee.name}</td>
-                <td>{employee.address}</td>
-                <td>{employee.dateOfBirth}</td>
-                <td>{employee.email}</td>
-                <td>{employee.phone}</td>
-                <td>
-                  <Link
-                    class="btn btn-primary mr-2"
-                    to={`/users/${employee.id}`}
-                  >
-                    View
-                  </Link>
-                  <Link
-                    class="btn btn-outline-primary mr-2"
-                    to={`/users/edit/${employee.id}`}
-                  >
-                    Update
-                  </Link>
-                  <Link
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => deleteEmployee(employee.id)}
-                  >
-                    Delete
-                  </Link>
-                </td>
-              </tr>
-            ))}
+            {employees
+              .filter((employee) => {
+                if (searchTerm == "") {
+                  return employee;
+                } else if (
+                  employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return employee;
+                }
+              })
+              .map((employee, index) => (
+                <tr key={index}>
+                  <td>{employee.name}</td>
+                  <td>{employee.address}</td>
+                  <td>{employee.dateOfBirth}</td>
+                  <td>{employee.email}</td>
+                  <td>{employee.phone}</td>
+                  <td>
+                    <Link
+                      class="btn btn-primary mr-2"
+                      to={`/users/${employee.id}`}
+                    >
+                      View
+                    </Link>
+                    <Link
+                      class="btn btn-outline-primary mr-2"
+                      to={`/users/edit/${employee.id}`}
+                    >
+                      Update
+                    </Link>
+                    <Link
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => deleteEmployee(employee.id)}
+                    >
+                      Delete
+                    </Link>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

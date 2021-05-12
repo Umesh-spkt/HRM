@@ -36,6 +36,15 @@
       "Female": "on",
       "id": 7,
       "gender": "female"
+    },
+    {
+      "name": "Ram Sapkota",
+      "address": "Rampur",
+      "email": "ram@gmail.com",
+      "phone": "1234567890",
+      "dateOfBirth": "2021-04-27",
+      "gender": "male",
+      "id": 8
     }
   ]
 }
