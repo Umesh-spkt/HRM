@@ -14,7 +14,26 @@ const AddUser = () => {
     phone: "",
     dateOfBirth: "",
     gender: "",
+    educationDetails: [
+      {
+        board: "",
+        institution: "",
+        passedYear: "",
+        percentage: "",
+        grade: "",
+      },
+    ],
   });
+
+  const [error, setError] = useState({
+    nameError: "",
+    addressError: "",
+    emailError: "",
+    phoneError: "",
+    dateOfBirthError: "",
+    genderError: "",
+  });
+
   const [education, setEducation] = useState(getEducation());
 
   const handleAdd = (e) => {
@@ -41,11 +60,29 @@ const AddUser = () => {
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  var errors = {};
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    await axios.post("http://localhost:3003/users", user);
-    history.push("/");
+    if (!user.name.trim()) {
+      setError({ nameError: "Username required" });
+    } else if (!/^[A-Za-z]+/.test(user.name.trim())) {
+      setError({ nameError: "Enter a valid name" });
+    } else if (!user.email) {
+      setError({ emailError: "Email is required" });
+    } else if (!/\S+@\S+\.\S+/.test(user.email)) {
+      setError({ emailError: "Enter a valid email" });
+    } else if (!user.gender) {
+      setError({ genderError: "Choose your Gender" });
+    } else if (!user.phone) {
+      setError({ phoneError: "Enter your number" });
+    } else if (!user.dateOfBirth) {
+      setError({ dateOfBirthError: "Enter your date of birth" });
+    } else if (!user.address) {
+      setError({ addressError: "Enter your address" });
+    } else {
+      await axios.post("http://localhost:3003/users", user);
+      history.push("/");
+    }
   };
   return (
     <React.Fragment>
@@ -63,8 +100,8 @@ const AddUser = () => {
                 value={name}
                 placeholder="Enter your Name"
                 onChange={(e) => onInputChange(e)}
-                required
               ></input>
+              {error.nameError && <p className="errors">{error.nameError}</p>}
             </td>
             <td>
               <label for="address">Address</label>
@@ -78,6 +115,9 @@ const AddUser = () => {
                 placeholder="Enter your Address"
                 onChange={(e) => onInputChange(e)}
               ></input>
+              {error.addressError && (
+                <p className="errors">{error.addressError}</p>
+              )}
             </td>
           </tr>
 
@@ -94,6 +134,9 @@ const AddUser = () => {
                 placeholder="Select Date"
                 onChange={(e) => onInputChange(e)}
               ></input>
+              {error.dateOfBirthError && (
+                <p className="errors">{error.dateOfBirthError}</p>
+              )}
             </td>
             <td>
               <label for="gender">Gender</label>
@@ -131,7 +174,9 @@ const AddUser = () => {
                 />
                 &nbsp;&nbsp; Other
               </label>
-              &nbsp;&nbsp;
+              {error.genderError && (
+                <p className="errors">{error.genderError}</p>
+              )}
             </td>
           </tr>
 
@@ -148,6 +193,7 @@ const AddUser = () => {
                 placeholder="Enter your Email"
                 onChange={(e) => onInputChange(e)}
               ></input>
+              {error.emailError && <p className="errors">{error.emailError}</p>}
             </td>
             <td>
               <label for="phoneNumber">Phone Number</label>
@@ -161,6 +207,7 @@ const AddUser = () => {
                 placeholder="Enter your Number"
                 onChange={(e) => onInputChange(e)}
               ></input>
+              {error.phoneError && <p className="errors">{error.phoneError}</p>}
             </td>
           </tr>
         </table>

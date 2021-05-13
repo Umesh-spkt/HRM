@@ -5,3 +5,6 @@
 .radio-inline {
   width: 30%;
 }
+.errors {
+  color: red;
+}

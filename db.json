@@ -7,7 +7,20 @@
       "phone": "9843805597",
       "dateOfBirth": "2021-05-10",
       "id": 4,
-      "gender": "male"
+      "gender": "male",
+      "educationDetails": [{
+        "board" : "NEB",
+        "institution" :"Brain Land Academy",
+        "passedyear" : 2070,
+        "percentage" : 83,
+        "grade" : 2
+       },{
+        "board" : "HSEB",
+        "institution" :"New Millenium College",
+        "passedyear" : 2072,
+        "percentage" : 62,
+        "grade" : 10
+      }  ]
     },
     {
       "name": "Ramesh Sapkota",
@@ -16,7 +29,20 @@
       "phone": "9843805598",
       "dateOfBirth": "2021-05-03",
       "id": 5,
-      "gender": "male"
+      "gender": "male",
+      "educationDetails": [{
+        "board" : "NEB",
+        "institution" :"Brain Land Academy",
+        "passedyear" : 2070,
+        "percentage" : 83,
+        "grade" : 2
+       },{
+        "board" : "HSEB",
+        "institution" :"New Millenium College",
+        "passedyear" : 2072,
+        "percentage" : 62,
+        "grade" : 10
+      }  ]
     },
     {
       "name": "Kamal Sapkota",
@@ -25,7 +51,20 @@
       "phone": "9843805599",
       "dateOfBirth": "2021-05-04",
       "id": 6,
-      "gender": "male"
+      "gender": "male",
+      "educationDetails": [{
+        "board" : "NEB",
+        "institution" :"Brain Land Academy",
+        "passedyear" : 2070,
+        "percentage" : 83,
+        "grade" : 2
+       },{
+        "board" : "HSEB",
+        "institution" :"New Millenium College",
+        "passedyear" : 2072,
+        "percentage" : 62,
+        "grade" : 10
+      }  ]
     },
     {
       "name": "Asmita Sapkota",
@@ -35,7 +74,20 @@
       "dateOfBirth": "2021-05-05",
       "Female": "on",
       "id": 7,
-      "gender": "female"
+      "gender": "female",
+      "educationDetails": [{
+        "board" : "NEB",
+        "institution" :"Brain Land Academy",
+        "passedyear" : 2070,
+        "percentage" : 83,
+        "grade" : 2
+       },{
+        "board" : "HSEB",
+        "institution" :"New Millenium College",
+        "passedyear" : 2072,
+        "percentage" : 62,
+        "grade" : 10
+      }  ]
     },
     {
       "name": "Ram Sapkota",
@@ -44,7 +96,42 @@
       "phone": "1234567890",
       "dateOfBirth": "2021-04-27",
       "gender": "male",
+      "educationDetails": [{
+        "board" : "NEB",
+        "institution" :"Brain Land Academy",
+        "passedyear" : 2070,
+        "percentage" : 83,
+        "grade" : 2
+       },{
+        "board" : "HSEB",
+        "institution" :"New Millenium College",
+        "passedyear" : 2072,
+        "percentage" : 62,
+        "grade" : 10
+      }  ],
       "id": 8
+    },
+    {
+      "name": "Rhisi",
+      "address": "rishinagar",
+      "email": "rhisi@gmail.com",
+      "phone": "984380559",
+      "dateOfBirth": "2021-05-04",
+      "gender": "male",
+      "educationDetails": [{
+        "board" : "NEB",
+        "institution" :"Brain Land Academy",
+        "passedyear" : 2070,
+        "percentage" : 83,
+        "grade" : 2
+       },{
+        "board" : "HSEB",
+        "institution" :"New Millenium College",
+        "passedyear" : 2072,
+        "percentage" : 62,
+        "grade" : 10
+      }  ],
+      "id": 9
     }
   ]
 }
