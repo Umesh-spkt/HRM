@@ -66,7 +66,13 @@ export default function Dashboard() {
                 if (searchTerm == "") {
                   return employee;
                 } else if (
-                  employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  employee.name
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) ||
+                  employee.address
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) ||
+                  employee.email.includes(searchTerm.toLowerCase())
                 ) {
                   return employee;
                 }
