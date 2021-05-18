@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { getEducation } from "../AddUser/educationDetails";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
 import "./index.css";
@@ -7,6 +6,7 @@ import "./index.css";
 const UpdateUser = () => {
   let history = useHistory();
   const { id } = useParams();
+
   const [user, setUser] = useState({
     name: "",
     address: "",
@@ -14,32 +14,58 @@ const UpdateUser = () => {
     phone: "",
     dateOfBirth: "",
     gender: "",
-  });
-  const [education, setEducation] = useState(getEducation());
-
-  const handleAdd = () => {
-    const Aeducation = [
-      ...education,
+    educationDetails: [
       {
-        _id: Math.random(),
-        Board: <input type="text"></input>,
-        Institution: <input type="text"></input>,
-        passedYear: <input type="number"></input>,
-        percentage: <input type="text"></input>,
-        grade: <input type="text"></input>,
+        board: "",
+        institution: "",
+        passedYear: "",
+        percentage: "",
+        grade: "",
       },
-    ];
-    setEducation(Aeducation);
+    ],
+  });
+
+  const [error, setError] = useState({
+    nameError: "",
+    addressError: "",
+    emailError: "",
+    phoneError: "",
+    dateOfBirthError: "",
+    genderError: "",
+  });
+
+  const handleAdd = (e) => {
+    let temp = { ...user };
+    temp.educationDetails.push({
+      board: "",
+      institution: "",
+      passedYear: "",
+      percentage: "",
+      grade: "",
+    });
+    setUser(temp);
   };
 
-  const handleDelete = (detail) => {
-    const Deducation = education.filter((d) => d._id !== detail._id);
-    setEducation(Deducation);
+  const handleDelete = (e, i) => {
+    let temp = { ...user };
+    temp.educationDetails.splice(i, 1);
+    setUser(temp);
   };
 
-  const { name, email, address, phone, dateOfBirth, gender } = user;
+  const { name, email, address, phone, dateOfBirth, gender, educationDetails } =
+    user;
+
+  const onEducationChange = (e, i) => {
+    let temp = { ...user };
+    temp.educationDetails[i][e.target.name] = e.target.value;
+    setUser(temp);
+  };
   const onInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    // for properties except education details
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
   };
 
   useEffect(() => {
@@ -48,8 +74,26 @@ const UpdateUser = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:3003/users/${id}`, user);
-    history.push("/");
+    if (!user.name.trim()) {
+      setError({ nameError: "Username required" });
+    } else if (!/^[A-Za-z]+/.test(user.name.trim())) {
+      setError({ nameError: "Enter a valid name" });
+    } else if (!user.email) {
+      setError({ emailError: "Email is required" });
+    } else if (!/\S+@\S+\.\S+/.test(user.email)) {
+      setError({ emailError: "Enter a valid email" });
+    } else if (!user.gender) {
+      setError({ genderError: "Choose your Gender" });
+    } else if (!user.phone) {
+      setError({ phoneError: "Enter your number" });
+    } else if (!user.dateOfBirth) {
+      setError({ dateOfBirthError: "Enter your date of birth" });
+    } else if (!user.address) {
+      setError({ addressError: "Enter your address" });
+    } else {
+      await axios.put(`http://localhost:3003/users/${id}`, user);
+      history.push("/");
+    }
   };
 
   const loadUser = async () => {
@@ -73,8 +117,8 @@ const UpdateUser = () => {
                 value={name}
                 placeholder="Enter your Name"
                 onChange={(e) => onInputChange(e)}
-                required
               ></input>
+              {error.nameError && <p className="errors">{error.nameError}</p>}
             </td>
             <td>
               <label for="address">Address</label>
@@ -88,6 +132,9 @@ const UpdateUser = () => {
                 placeholder="Enter your Address"
                 onChange={(e) => onInputChange(e)}
               ></input>
+              {error.addressError && (
+                <p className="errors">{error.addressError}</p>
+              )}
             </td>
           </tr>
 
@@ -104,6 +151,9 @@ const UpdateUser = () => {
                 placeholder="Select Date"
                 onChange={(e) => onInputChange(e)}
               ></input>
+              {error.dateOfBirthError && (
+                <p className="errors">{error.dateOfBirthError}</p>
+              )}
             </td>
             <td>
               <label for="gender">Gender</label>
@@ -141,7 +191,9 @@ const UpdateUser = () => {
                 />
                 &nbsp;&nbsp; Other
               </label>
-              &nbsp;&nbsp;
+              {error.genderError && (
+                <p className="errors">{error.genderError}</p>
+              )}
             </td>
           </tr>
 
@@ -158,6 +210,7 @@ const UpdateUser = () => {
                 placeholder="Enter your Email"
                 onChange={(e) => onInputChange(e)}
               ></input>
+              {error.emailError && <p className="errors">{error.emailError}</p>}
             </td>
             <td>
               <label for="phoneNumber">Phone Number</label>
@@ -171,6 +224,7 @@ const UpdateUser = () => {
                 placeholder="Enter your Number"
                 onChange={(e) => onInputChange(e)}
               ></input>
+              {error.phoneError && <p className="errors">{error.phoneError}</p>}
             </td>
           </tr>
         </table>
@@ -197,16 +251,51 @@ const UpdateUser = () => {
           </thead>
 
           <tbody>
-            {education.map((details) => (
-              <tr key={details._id}>
-                <td>{details.Board}</td>
-                <td>{details.Institution}</td>
-                <td>{details.passedYear}</td>
-                <td>{details.percentage}</td>
-                <td>{details.grade}</td>
+            {educationDetails.map((details, i) => (
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    name="board"
+                    value={educationDetails[i].board}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="institution"
+                    value={educationDetails[i].institution}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="passedYear"
+                    value={educationDetails[i].passedYear}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="percentage"
+                    value={educationDetails[i].percentage}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="grade"
+                    value={educationDetails[i].grade}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
                 <td>
                   <button
-                    onClick={() => handleDelete(details)}
+                    onClick={(e) => handleDelete(e, i)}
                     className="btn btn-danger btn-sm"
                   >
                     Delete

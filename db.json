@@ -14,14 +14,16 @@
           "institution": "Brain Land Academy",
           "passedyear": 2070,
           "percentage": 83,
-          "grade": 2
+          "grade": 2,
+          "passedYear": "2017"
         },
         {
           "board": "HSEB",
           "institution": "New Millenium College",
           "passedyear": 2072,
           "percentage": 62,
-          "grade": 10
+          "grade": 10,
+          "passedYear": "2019"
         }
       ]
     },
@@ -39,14 +41,16 @@
           "institution": "Brain Land Academy",
           "passedyear": 2070,
           "percentage": 83,
-          "grade": 2
+          "grade": 2,
+          "passedYear": "2017"
         },
         {
           "board": "HSEB",
           "institution": "New Millenium College",
           "passedyear": 2072,
           "percentage": 62,
-          "grade": 10
+          "grade": 10,
+          "passedYear": "2019"
         }
       ]
     },
@@ -64,14 +68,16 @@
           "institution": "Brain Land Academy",
           "passedyear": 2070,
           "percentage": 83,
-          "grade": 2
+          "grade": 2,
+          "passedYear": "2017"
         },
         {
           "board": "HSEB",
           "institution": "New Millenium College",
           "passedyear": 2072,
           "percentage": 62,
-          "grade": 10
+          "grade": 10,
+          "passedYear": "2019"
         }
       ]
     },
@@ -90,14 +96,16 @@
           "institution": "Brain Land Academy",
           "passedyear": 2070,
           "percentage": 83,
-          "grade": 2
+          "grade": 2,
+          "passedYear": "2017"
         },
         {
           "board": "HSEB",
           "institution": "New Millenium College",
           "passedyear": 2072,
           "percentage": 62,
-          "grade": 10
+          "grade": 10,
+          "passedYear": "2019"
         }
       ]
     },
@@ -114,42 +122,19 @@
           "institution": "Brain Land Academy",
           "passedyear": 2070,
           "percentage": 83,
-          "grade": 2
+          "grade": 2,
+          "passedYear": "2017"
         },
         {
           "board": "HSEB",
           "institution": "New Millenium College",
           "passedyear": 2072,
           "percentage": 62,
-          "grade": 10
+          "grade": 10,
+          "passedYear": "2020"
         }
       ],
       "id": 8
-    },
-    {
-      "name": "Rhisi",
-      "address": "rishinagar",
-      "email": "rhisi@gmail.com",
-      "phone": "984380559",
-      "dateOfBirth": "2021-05-04",
-      "gender": "male",
-      "educationDetails": [
-        {
-          "board": "NEB",
-          "institution": "Brain Land Academy",
-          "passedyear": 2070,
-          "percentage": 83,
-          "grade": 2
-        },
-        {
-          "board": "HSEB",
-          "institution": "New Millenium College",
-          "passedyear": 2072,
-          "percentage": 62,
-          "grade": 10
-        }
-      ],
-      "id": 9
     }
   ]
 }

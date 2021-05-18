@@ -10,6 +10,15 @@ const ViewUser = () => {
     phone: "",
     dateOfBirth: "",
     gender: "",
+    educationDetails: [
+      {
+        board: "",
+        institution: "",
+        passedYear: "",
+        percentage: "",
+        grade: "",
+      },
+    ],
   });
   const { id } = useParams();
   useEffect(() => {
@@ -33,6 +42,27 @@ const ViewUser = () => {
         <li className="list-group-item">Phone: {user.phone}</li>
         <li className="list-group-item">Date Of birth: {user.dateOfBirth}</li>
         <li className="list-group-item">Gender: {user.gender}</li>
+      </ul>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <h1 className="display-4">Education Details</h1>&nbsp;&nbsp;
+      <ul>
+        {user.educationDetails.map((detail, i) => (
+          <div>
+            <h3>{user.educationDetails[i].institution}</h3>
+            <li className="list-group-item">
+              Baord: {user.educationDetails[i].board}
+            </li>
+            <li className="list-group-item">
+              Passed Year: {user.educationDetails[i].passedYear}
+            </li>
+            <li className="list-group-item">
+              Percentage: {user.educationDetails[i].percentage}
+            </li>
+            <li className="list-group-item">
+              Grade: {user.educationDetails[i].grade}
+            </li>
+          </div>
+        ))}
       </ul>
     </div>
   );

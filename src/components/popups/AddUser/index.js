@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./index.css";
-import { getEducation } from "./educationDetails";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -34,33 +33,40 @@ const AddUser = () => {
     genderError: "",
   });
 
-  const [education, setEducation] = useState(getEducation());
-
   const handleAdd = (e) => {
-    const Aeducation = [
-      ...education,
-      {
-        _id: Math.random(),
-        Board: <input type="text"></input>,
-        Institution: <input type="text"></input>,
-        passedYear: <input type="number"></input>,
-        percentage: <input type="text"></input>,
-        grade: <input type="text"></input>,
-      },
-    ];
-    setEducation(Aeducation);
+    let temp = { ...user };
+    temp.educationDetails.push({
+      board: "",
+      institution: "",
+      passedYear: "",
+      percentage: "",
+      grade: "",
+    });
+    setUser(temp);
   };
 
-  const handleDelete = (detail) => {
-    const Deducation = education.filter((d) => d._id !== detail._id);
-    setEducation(Deducation);
+  const handleDelete = (e, i) => {
+    let temp = { ...user };
+    temp.educationDetails.splice(i, 1);
+    setUser(temp);
   };
 
-  const { name, email, address, phone, dateOfBirth, gender } = user;
+  const { name, email, address, phone, dateOfBirth, gender, educationDetails } =
+    user;
+
+  const onEducationChange = (e, i) => {
+    let temp = { ...user };
+    temp.educationDetails[i][e.target.name] = e.target.value;
+    setUser(temp);
+  };
   const onInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    // for properties except education details
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
   };
-  var errors = {};
+
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!user.name.trim()) {
@@ -234,16 +240,51 @@ const AddUser = () => {
           </thead>
 
           <tbody>
-            {education.map((details) => (
-              <tr key={details._id}>
-                <td>{details.Board}</td>
-                <td>{details.Institution}</td>
-                <td>{details.passedYear}</td>
-                <td>{details.percentage}</td>
-                <td>{details.grade}</td>
+            {educationDetails.map((details, i) => (
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    name="board"
+                    value={educationDetails[i].board}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="institution"
+                    value={educationDetails[i].institution}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="passedYear"
+                    value={educationDetails[i].passedYear}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="percentage"
+                    value={educationDetails[i].percentage}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    name="grade"
+                    value={educationDetails[i].grade}
+                    onChange={(e) => onEducationChange(e, i)}
+                  ></input>
+                </td>
                 <td>
                   <button
-                    onClick={() => handleDelete(details)}
+                    onClick={(e) => handleDelete(e, i)}
                     className="btn btn-danger btn-sm"
                   >
                     Delete
