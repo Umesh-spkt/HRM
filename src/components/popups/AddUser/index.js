@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./index.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const AddUser = () => {
   let history = useHistory();
@@ -93,6 +93,9 @@ const AddUser = () => {
   return (
     <React.Fragment>
       <form onSubmit={(e) => onSubmit(e)}>
+        <Link className="btn btn-danger" to="/">
+          Close
+        </Link>
         <table className="table">
           <tr>
             <td>
