@@ -25,8 +25,11 @@ const ViewUser = () => {
     loadUser();
   }, []);
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3003/users/${id}`);
-    setUser(res.data);
+    const res = await axios.get(
+      `http://173.249.45.237:8081/hrs/employee/${id}`
+    );
+    console.log(res);
+    setUser(res.data.model);
   };
   return (
     <div className="container py-4">
@@ -39,7 +42,7 @@ const ViewUser = () => {
         <li className="list-group-item">Name: {user.name}</li>
         <li className="list-group-item">Address: {user.address}</li>
         <li className="list-group-item">Email: {user.email}</li>
-        <li className="list-group-item">Phone: {user.phone}</li>
+        <li className="list-group-item">Phone: {user.phoneNumber}</li>
         <li className="list-group-item">Date Of birth: {user.dateOfBirth}</li>
         <li className="list-group-item">Gender: {user.gender}</li>
       </ul>

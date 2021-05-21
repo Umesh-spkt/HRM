@@ -10,19 +10,22 @@ export default function Dashboard() {
   }, []);
 
   const loadEmployees = async () => {
-    const result = await axios.get("http://localhost:3003/users");
-    setEmployee(result.data.reverse());
+    const res = await axios.get("http://173.249.45.237:8081/hrs/employee");
+    setEmployee(res.data.list.reverse());
+  };
+  const getDate = (date) => {
+    return (date = new Date().toDateString());
   };
 
   const deleteEmployee = async (id) => {
-    await axios.delete(`http://localhost:3003/users/${id}`);
+    await axios.delete(`http://173.249.45.237:8081/hrs/employee/${id}`);
     loadEmployees();
   };
 
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className="container">
+    <div style={{ padding: 30, width: "100%" }}>
       <div className="py-4">
         <div style={{ float: "right" }}>
           <input
@@ -39,25 +42,15 @@ export default function Dashboard() {
           </Link>
           <h1>Employees</h1>
         </div>
-        <table className="table border shadow">
+        <table className="table border shadow" width="100%">
           <thead className="table-light">
             <tr>
-              <th column="name" order="desc" scope="col">
-                Name
-              </th>
-              <th column="address" order="desc" scope="col">
-                Address
-              </th>
-              <th column="dateOfBirth" order="desc" scope="col">
-                Date Of Birth
-              </th>
-              <th column="email" order="desc" scope="col">
-                Email
-              </th>
-              <th column="phoneNumber" order="desc" scope="col">
-                Phone Number
-              </th>
-              <th scope="col">Actions</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Date Of Birth</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -81,29 +74,28 @@ export default function Dashboard() {
                 <tr key={index}>
                   <td>{employee.name}</td>
                   <td>{employee.address}</td>
-                  <td>{employee.dateOfBirth}</td>
+                  <td>{getDate(employee.dateOfBirth)}</td>
                   <td>{employee.email}</td>
-                  <td>{employee.phone}</td>
+                  <td>{employee.phoneNumber}</td>
                   <td>
                     <Link
-                      class="btn btn-primary mr-2"
+                      className="btn btn-primary mr-2"
                       to={`/users/${employee.id}`}
                     >
                       View
                     </Link>
                     <Link
-                      class="btn btn-outline-primary mr-2"
+                      className="btn btn-outline-primary mr-2"
                       to={`/users/edit/${employee.id}`}
                     >
                       Update
                     </Link>
-                    <Link
+                    <input
                       type="button"
                       className="btn btn-danger"
                       onClick={() => deleteEmployee(employee.id)}
-                    >
-                      Delete
-                    </Link>
+                      value=" Delete"
+                    />
                   </td>
                 </tr>
               ))}
