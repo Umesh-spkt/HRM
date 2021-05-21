@@ -25,10 +25,11 @@ const ViewUser = () => {
     loadUser();
   }, []);
   const loadUser = async () => {
-    const res = await axios.get(
-      `http://173.249.45.237:8081/hrs/employee/${id}`
+    const res = axios.post(
+      "http://173.249.45.237:8081/hrs/employee/save",
+      user
     );
-    console.log(res);
+
     setUser(res.data.model);
   };
   return (

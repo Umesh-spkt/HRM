@@ -105,132 +105,136 @@ const AddUser = () => {
             Close
           </Link>
           <table className="table">
-            <tr>
-              <td>
-                <label for="name">Name</label>
-              </td>
-              <td>
-                <input
-                  className="field"
-                  type="text"
-                  name="name"
-                  value={name}
-                  placeholder="Enter your Name"
-                  onChange={(e) => onInputChange(e)}
-                ></input>
-                {error.nameError && <p className="errors">{error.nameError}</p>}
-              </td>
-              <td>
-                <label for="address">Address</label>
-              </td>
-              <td>
-                <input
-                  className="field"
-                  type="text"
-                  name="address"
-                  value={address}
-                  placeholder="Enter your Address"
-                  onChange={(e) => onInputChange(e)}
-                ></input>
-                {error.addressError && (
-                  <p className="errors">{error.addressError}</p>
-                )}
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <label htmlFor="name">Name</label>
+                </td>
+                <td>
+                  <input
+                    className="field"
+                    type="text"
+                    name="name"
+                    value={name}
+                    placeholder="Enter your Name"
+                    onChange={(e) => onInputChange(e)}
+                  ></input>
+                  {error.nameError && (
+                    <p className="errors">{error.nameError}</p>
+                  )}
+                </td>
+                <td>
+                  <label htmlFor="address">Address</label>
+                </td>
+                <td>
+                  <input
+                    className="field"
+                    type="text"
+                    name="address"
+                    value={address}
+                    placeholder="Enter your Address"
+                    onChange={(e) => onInputChange(e)}
+                  ></input>
+                  {error.addressError && (
+                    <p className="errors">{error.addressError}</p>
+                  )}
+                </td>
+              </tr>
 
-            <tr>
-              <td>
-                <label for="dateOfBirth">Date Of Birth</label>
-              </td>
-              <td>
-                <input
-                  className="field"
-                  type="date"
-                  name="dateOfBirth"
-                  value={dateOfBirth}
-                  placeholder="Select Date"
-                  onChange={(e) => onInputChange(e)}
-                ></input>
-                {error.dateOfBirthError && (
-                  <p className="errors">{error.dateOfBirthError}</p>
-                )}
-              </td>
-              <td>
-                <label for="gender">Gender</label>
-              </td>
-              <td>
-                <label class="radio-inline">
+              <tr>
+                <td>
+                  <label htmlFor="dateOfBirth">Date Of Birth</label>
+                </td>
+                <td>
                   <input
-                    type="radio"
-                    name="gender"
-                    checked={gender === "male"}
-                    value="male"
+                    className="field"
+                    type="date"
+                    name="dateOfBirth"
+                    value={dateOfBirth}
+                    placeholder="Select Date"
                     onChange={(e) => onInputChange(e)}
-                  />
-                  &nbsp; Male
-                </label>
-                &nbsp;&nbsp;
-                <label class="radio-inline">
-                  <input
-                    type="radio"
-                    name="gender"
-                    checked={gender === "female"}
-                    value="female"
-                    onChange={(e) => onInputChange(e)}
-                  />
-                  &nbsp; Female
-                </label>
-                &nbsp;&nbsp;
-                <label class="radio-inline">
-                  <input
-                    type="radio"
-                    name="gender"
-                    checked={gender === "other"}
-                    value="other"
-                    onChange={(e) => onInputChange(e)}
-                  />
-                  &nbsp;&nbsp; Other
-                </label>
-                {error.genderError && (
-                  <p className="errors">{error.genderError}</p>
-                )}
-              </td>
-            </tr>
+                  ></input>
+                  {error.dateOfBirthError && (
+                    <p className="errors">{error.dateOfBirthError}</p>
+                  )}
+                </td>
+                <td>
+                  <label htmlFor="gender">Gender</label>
+                </td>
+                <td>
+                  <label className="radio-inline">
+                    <input
+                      type="radio"
+                      name="gender"
+                      checked={gender === "male"}
+                      value="male"
+                      onChange={(e) => onInputChange(e)}
+                    />
+                    &nbsp; Male
+                  </label>
+                  &nbsp;&nbsp;
+                  <label className="radio-inline">
+                    <input
+                      type="radio"
+                      name="gender"
+                      checked={gender === "female"}
+                      value="female"
+                      onChange={(e) => onInputChange(e)}
+                    />
+                    &nbsp; Female
+                  </label>
+                  &nbsp;&nbsp;
+                  <label className="radio-inline">
+                    <input
+                      type="radio"
+                      name="gender"
+                      checked={gender === "other"}
+                      value="other"
+                      onChange={(e) => onInputChange(e)}
+                    />
+                    &nbsp;&nbsp; Other
+                  </label>
+                  {error.genderError && (
+                    <p className="errors">{error.genderError}</p>
+                  )}
+                </td>
+              </tr>
 
-            <tr>
-              <td>
-                <label for="email">Email</label>
-              </td>
-              <td>
-                <input
-                  className="field"
-                  type="text"
-                  name="email"
-                  value={email}
-                  placeholder="Enter your Email"
-                  onChange={(e) => onInputChange(e)}
-                ></input>
-                {error.emailError && (
-                  <p className="errors">{error.emailError}</p>
-                )}
-              </td>
-              <td>
-                <label for="phoneNumberNumber">phoneNumber Number</label>
-              </td>
-              <td>
-                <input
-                  className="field"
-                  type="number"
-                  name="phoneNumber"
-                  value={phoneNumber}
-                  placeholder="Enter your Number"
-                  onChange={(e) => onInputChange(e)}
-                ></input>
-                {error.phoneNumberError && (
-                  <p className="errors">{error.phoneNumberError}</p>
-                )}
-              </td>
-            </tr>
+              <tr>
+                <td>
+                  <label htmlFor="email">Email</label>
+                </td>
+                <td>
+                  <input
+                    className="field"
+                    type="text"
+                    name="email"
+                    value={email}
+                    placeholder="Enter your Email"
+                    onChange={(e) => onInputChange(e)}
+                  ></input>
+                  {error.emailError && (
+                    <p className="errors">{error.emailError}</p>
+                  )}
+                </td>
+                <td>
+                  <label htmlFor="phoneNumberNumber">phoneNumber Number</label>
+                </td>
+                <td>
+                  <input
+                    className="field"
+                    type="number"
+                    name="phoneNumber"
+                    value={phoneNumber}
+                    placeholder="Enter your Number"
+                    onChange={(e) => onInputChange(e)}
+                  ></input>
+                  {error.phoneNumberError && (
+                    <p className="errors">{error.phoneNumberError}</p>
+                  )}
+                </td>
+              </tr>
+            </tbody>
           </table>
 
           <h3>Education Details</h3>

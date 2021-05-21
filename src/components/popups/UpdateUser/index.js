@@ -98,7 +98,7 @@ const UpdateUser = () => {
     } else if (!user.address) {
       setError({ addressError: "Enter your address" });
     } else {
-      await axios.put(`http://173.249.45.237:8081/hrs/employee/${id}`, user);
+      await axios.post("http://173.249.45.237:8081/hrs/employee/save", user);
       history.push("/");
     }
   };
